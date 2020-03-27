@@ -21,6 +21,7 @@
     "axios": "^0.19.2",
     "cc-vue-util": "^1.0.8",
     "express": "^4.17.1",
-    "node-redis": "^0.1.7"
+    "redis": "^3.0.2",
+    "request": "^2.88.2"
   }
 }

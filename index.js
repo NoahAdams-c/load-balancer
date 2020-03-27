@@ -3,14 +3,19 @@
  * @Author: chenchen
  * @Date: 2020-03-27 12:41:40
  * @LastEditors: chenchen
- * @LastEditTime: 2020-03-27 15:22:52
+ * @LastEditTime: 2020-03-27 16:43:21
  */
-const { baseAjax } = require("cc-vue-util")
+const { promisify } = require("util")
+const request = promisify(require("request"))
 const app = require("./app").getInstance()
 
 app.post("/ivr", async (req, resp) => {
 	const host = app.get("host")
-	const $ajax = baseAjax(`http://${host}`)
-	res = await $ajax.doPost("/ivr", req)
-	resp.send(res)
+	res = await request({
+		url: `http://${host}/ivr`,
+		method: "POST",
+		body: req,
+		json: true
+	})
+	resp.send(res.body)
 })

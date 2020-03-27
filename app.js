@@ -3,14 +3,15 @@
  * @Author: chenchen
  * @Date: 2020-03-27 12:45:27
  * @LastEditors: chenchen
- * @LastEditTime: 2020-03-27 15:57:47
+ * @LastEditTime: 2020-03-27 17:13:17
  */
 
 const app = require("express")()
 const body_parser = require("body-parser")
 const { port, redis, clientKeyField } = require("./config")
-const redisInstance = require("node-redis").createClient(...redis)
-const dic = require("./dictionary")(redisInstance)
+const redisInstance = require("redis").createClient(redis)
+const Dictionary = require("./dictionary")
+const dic = new Dictionary(redisInstance)
 
 module.exports = {
 	/**
@@ -21,10 +22,10 @@ module.exports = {
 		app.use(body_parser.json())
 		// dictionay handle
 		app.use("/ivr", async (req, resp, next) => {
-			let serverHost = await dic.getServer(req[clientKeyField])
+			let serverHost = await dic.getServer(req.body[clientKeyField])
 			if (!serverHost) {
 				const freeServer = await dic.getFreeServer()
-				await dic.bufferConnection(freeServer, req[clientKeyField])
+				await dic.bufferConnection(freeServer, req.body[clientKeyField])
 				serverHost = freeServer
 			}
 			app.set("host", serverHost)
