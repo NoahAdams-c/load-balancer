@@ -1,0 +1,25 @@
+{
+  "name": "load-balancer",
+  "version": "1.0.0",
+  "description": "load balancer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/NoahAdams-c/load-balancer.git"
+  },
+  "author": "chenchen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NoahAdams-c/load-balancer/issues"
+  },
+  "homepage": "https://github.com/NoahAdams-c/load-balancer#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cc-vue-util": "^1.0.8",
+    "express": "^4.17.1",
+    "node-redis": "^0.1.7"
+  }
+}
