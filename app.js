@@ -3,14 +3,14 @@
  * @Author: chenchen
  * @Date: 2020-03-27 12:45:27
  * @LastEditors: chenchen
- * @LastEditTime: 2020-03-27 15:17:13
+ * @LastEditTime: 2020-03-27 15:54:57
  */
 
 const app = require("express")()
 const body_parser = require("body-parser")
 const { port, redis, clientKeyField } = require("./config")
-const redis = require("node-redis")(...redis)
-const dic = require("./dictionary")(redis)
+const redisInstance = require("node-redis")(...redis)
+const dic = require("./dictionary")(redisInstance)
 
 module.exports = {
 	/**
