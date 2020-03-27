@@ -3,7 +3,7 @@
  * @Author: chenchen
  * @Date: 2020-03-27 12:41:40
  * @LastEditors: chenchen
- * @LastEditTime: 2020-03-27 16:43:21
+ * @LastEditTime: 2020-03-27 17:52:54
  */
 const { promisify } = require("util")
 const request = promisify(require("request"))
@@ -14,7 +14,7 @@ app.post("/ivr", async (req, resp) => {
 	res = await request({
 		url: `http://${host}/ivr`,
 		method: "POST",
-		body: req,
+		body: req.body,
 		json: true
 	})
 	resp.send(res.body)
